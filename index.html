@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Internet Court ⚖️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="bg-glow glow-a"></div>
+  <div class="bg-glow glow-b"></div>
+  <div class="grain"></div>
+
+  <header class="site-header">
+    <button class="brand" id="brandHome">
+      ⚖️ <span>THE INTERNET COURT</span>
+    </button>
+
+    <button class="sound-toggle" id="soundToggle">
+      🔊 Sound On
+    </button>
+  </header>
+
+  <main id="app">
+
+    <!-- ================= HOME ================= -->
+
+    <section class="screen active" id="homeScreen">
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="window-card">EXHIBIT A</div>
+        <div class="floating-paper paper-one">Bro really did that.</div>
+        <div class="floating-paper paper-two">This could have been avoided.</div>
+        <div class="sticky-note">ASK THE DEFENDANT WHY.</div>
+        <div class="mini-laptop">
+          COURT.EXE<br>
+          <span>still judging...</span>
+        </div>
+        <div class="gavel-art">🔨</div>
+        <div class="tiny-eyes">◉ &nbsp; ◉</div>
+      </div>
+
+      <div class="hero">
+
+        <div class="seal">⚖</div>
+
+        <p class="eyebrow">
+          WELCOME TO THE INTERNET COURT
+        </p>
+
+        <h1>
+          Your questionable<br>
+          <span>decisions</span> need a trial.
+        </h1>
+
+        <p class="hero-sub">
+          Submit a harmless crime. Get judged dramatically.
+          Defend yourself in the arena.
+        </p>
+
+        <div class="case-panel">
+
+          <div class="panel-top">
+
+            <div>
+              <label for="crimeInput">
+                WHAT DID YOU DO?
+              </label>
+
+              <div class="example-row" id="exampleRow"></div>
+            </div>
+
+            <div class="case-id">
+              CASE <b id="previewCase">#2841</b>
+            </div>
+
+          </div>
+
+          <!-- CRIME INPUT -->
+
+          <textarea
+            id="crimeInput"
+            maxlength="180"
+            placeholder="e.g. I ate my friend's fries without asking..."
+          ></textarea>
+
+          <!-- LIVE SEVERITY -->
+
+          <div class="live-severity">
+
+            <div class="live-severity-top">
+              <span>LIVE CRIME METER</span>
+              <b id="liveSeverityValue">55/100</b>
+            </div>
+
+            <div class="live-severity-bar">
+              <i id="liveSeverityFill"></i>
+            </div>
+
+            <div class="live-severity-bottom">
+              <span id="liveSeverityLabel">
+                Questionable 😐
+              </span>
+
+              <span id="liveSeverityHint">
+                Type your confession...
+              </span>
+            </div>
+
+          </div>
+
+          <div class="judge-intro">
+
+            <div class="judge-mini">
+              🧑‍⚖️
+            </div>
+
+            <div>
+              <b>LET THE JUDGE DECIDE</b>
+
+              <span>
+                You confess. The court calculates the severity.
+              </span>
+            </div>
+
+          </div>
+
+          <button class="cta gold-btn" id="submitCrime">
+            ⚖️ SUBMIT FOR TRIAL
+            <span>→</span>
+          </button>
+
+          <p class="fine-print">
+            Fictional courtroom. Questionable legal standards.
+            Zero real consequences.
+          </p>
+
+        </div>
+      </div>
+
+      <div class="how-strip">
+        <span>① CONFESS</span>
+        <span>② GET JUDGED</span>
+        <span>③ FIGHT THE JUDGE</span>
+        <span>④ WIN OR CRY</span>
+      </div>
+
+      <button class="history-pill" id="historyOpen">
+        📁 Case History
+      </button>
+
+    </section>
+
+
+    <!-- ================= TRIAL ================= -->
+
+    <section class="screen" id="trialScreen">
+
+      <div class="court-bg">
+        <div class="court-column left"></div>
+        <div class="court-column right"></div>
+        <div class="court-window"></div>
+        <div class="bench"></div>
+      </div>
+
+      <div class="trial-wrap">
+
+        <div class="top-meta">
+          <span>
+            THE PEOPLE VS. <b>YOU</b>
+          </span>
+
+          <span>
+            CASE <b id="caseNumber">#2841</b>
+          </span>
+        </div>
+
+        <div class="trial-card">
+
+          <div class="stamp">
+            CASE FILED
+          </div>
+
+          <div class="judge-card">
+
+            <div class="judge-avatar" id="judgeAvatar">
+              🧑‍⚖️
+            </div>
+
+            <div>
+              <span class="judge-label">
+                CURRENT JUDGE
+              </span>
+
+              <h2 id="judgeName">
+                THE HONORABLE JUDGE
+              </h2>
+
+              <p id="judgeLine">
+                “I have seen worse. Probably.”
+              </p>
+            </div>
+
+          </div>
+
+          <div
+            class="crime-display"
+            id="crimeDisplay">
+          </div>
+
+          <div class="severity-read">
+
+            <div>
+
+              <span>
+                JUDGE'S CRIME METER
+              </span>
+
+              <div class="severity-meter">
+                <i id="severityMeterFill"></i>
+              </div>
+
+              <div
+                class="severity-badge"
+                id="severityBadge">
+                ⚖️ 55/100
+              </div>
+
+            </div>
+
+            <strong id="trialSeverity">
+              55/100
+            </strong>
+
+          </div>
+
+          <div class="judge-ruling">
+
+            <b id="rulingTitle">
+              JUDGE'S RULING
+            </b>
+
+            <span
+              class="ruling-text"
+              id="rulingText">
+              The Judge is analyzing your statement...
+            </span>
+
+          </div>
+
+          <div class="evidence-grid">
+
+            <button class="evidence-card">
+              <span class="evidence-icon">🔍</span>
+              <b>Evidence #1</b>
+              <small id="evidence1"></small>
+            </button>
+
+            <button class="evidence-card">
+              <span class="evidence-icon">📜</span>
+              <b>Evidence #2</b>
+              <small id="evidence2"></small>
+            </button>
+
+            <button class="evidence-card">
+              <span class="evidence-icon">👁️</span>
+              <b>Evidence #3</b>
+              <small id="evidence3"></small>
+            </button>
+
+          </div>
+
+          <div class="trial-footer">
+
+            <div
+              class="court-thought"
+              id="courtThought">
+              The court is reviewing your questionable choices...
+            </div>
+
+            <button
+              class="cta red-btn"
+              id="trialAction">
+
+              🔥 FACE THE JUDGE
+              <span>→</span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= GAME ================= -->
+
+    <section
+      class="screen game-screen"
+      id="gameScreen">
+
+      <div class="game-top">
+
+        <div class="statbox">
+
+          <span>YOU</span>
+
+          <div class="bar">
+            <i id="playerHpBar"></i>
+          </div>
+
+          <small id="playerHpText">
+            100 HP
+          </small>
+
+        </div>
+
+        <div class="round-box">
+
+          <span id="phaseLabel">
+            ROUND 1
+          </span>
+
+          <b id="comboLabel">
+            0 HITS
+          </b>
+
+        </div>
+
+        <div class="statbox judge-stat">
+
+          <span id="bossLabel">
+            JUDGE
+          </span>
+
+          <div class="bar">
+            <i id="bossHpBar"></i>
+          </div>
+
+          <small id="bossHpText">
+            100 HP
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="arena-shell">
+
+        <div class="arena-bg">
+
+          <div class="neon-scale">
+            ⚖
+          </div>
+
+          <div class="legal-ring"></div>
+
+          <div class="arena-sign">
+            SUPREME COURT
+            <br>
+            <span>ARCADE DIVISION</span>
+          </div>
+
+          <div class="arena-paper p1">
+            OBJECTION
+          </div>
+
+          <div class="arena-paper p2">
+            EXHIBIT B
+          </div>
+
+          <div class="warning warning-one">
+            ⚠
+          </div>
+
+          <div class="warning warning-two">
+            ⚠
+          </div>
+
+        </div>
+
+
+        <div id="arena">
+
+          <div
+            class="arena-player"
+            id="player">
+            🧑
+          </div>
+
+          <div
+            class="arena-judge"
+            id="boss">
+            🧑‍⚖️
+          </div>
+
+          <div id="projectiles"></div>
+
+          <div id="powerups"></div>
+
+          <div id="damageLayer"></div>
+
+          <div
+            class="boss-dialogue"
+            id="bossDialogue">
+            THE COURT IS NOW IN SESSION.
+          </div>
+
+          <div class="controls-tip">
+            WASD / ARROWS MOVE • CLICK / SPACE SHOOT
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="ability-row">
+
+        <div class="ability">
+          <span>⚡</span>
+          <b>OBJECTION</b>
+          <small>Bonus damage</small>
+        </div>
+
+        <div class="ability">
+          <span>🛡️</span>
+          <b>LAWYER SHIELD</b>
+          <small>Restore HP</small>
+        </div>
+
+        <div class="ability">
+          <span>⭐</span>
+          <b>COURT BOOST</b>
+          <small>Rapid fire</small>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= RESULT ================= -->
+
+    <section
+      class="screen result-screen"
+      id="resultScreen">
+
+      <div
+        class="result-confetti"
+        id="confetti">
+      </div>
+
+      <div
+        class="result-icon"
+        id="resultIcon">
+        🏆
+      </div>
+
+      <p class="eyebrow">
+        THE COURT HAS SPOKEN
+      </p>
+
+      <h2 id="verdictTitle">
+        NOT GUILTY
+      </h2>
+
+      <div class="verdict-card">
+
+        <span>VERDICT</span>
+
+        <p id="verdictText"></p>
+
+      </div>
+
+      <div class="result-stats">
+
+        <div>
+          <b id="xpValue">+500</b>
+          <small>JUSTICE XP</small>
+        </div>
+
+        <div>
+          <b id="accuracyValue">0%</b>
+          <small>ACCURACY</small>
+        </div>
+
+        <div>
+          <b id="severityResult">0</b>
+          <small>SEVERITY</small>
+        </div>
+
+      </div>
+
+      <div
+        class="achievement"
+        id="achievementBox">
+        🏆
+        <span>Achievement unlocked!</span>
+      </div>
+
+      <button
+        class="cta gold-btn"
+        id="newCase">
+
+        ⚖️ APPEAL / NEW CASE
+        <span>→</span>
+
+      </button>
+
+      <button
+        class="text-btn"
+        id="historyResult">
+
+        View case history
+
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- HISTORY -->
+
+  <aside
+    class="drawer"
+    id="historyDrawer"
+    aria-hidden="true">
+
+    <div class="drawer-head">
+
+      <h2>
+        📁 Case History
+      </h2>
+
+      <button id="historyClose">
+        ✕
+      </button>
+
+    </div>
+
+    <div
+      id="historyList"
+      class="history-list">
+    </div>
+
+  </aside>
+
+
+  <div
+    class="drawer-backdrop"
+    id="drawerBackdrop">
+  </div>
+
+  <div
+    class="toast"
+    id="toast">
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
